@@ -6,9 +6,26 @@ const Forecasts = props => {
     props.getForecasts()
   }, [])
 
+  const getForecasts = () => {
+    return props.forecasts.map(forecast => (
+      <div>
+        <span>{forecast.dt_txt}</span>
+      </div>
+    ))
+  }
+
   return (
-    <div>Hello from Forecasts!</div>
+    <div>
+      <h1>Hello from Forecasts!</h1>
+      <div>
+        <div>{getForecasts()}</div>
+      </div>
+    </div>
   )
+}
+
+Forecasts.propTypes = {
+  forecasts: PropTypes.array.isRequired
 }
 
 export default Forecasts

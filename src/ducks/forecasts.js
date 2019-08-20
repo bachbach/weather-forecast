@@ -15,8 +15,7 @@ export const getForecasts = (query) => {
   return async dispatch => {
     try {
       const { data } = await forecastsService.getForecasts(query)
-      
-      dispatch(getForecastsSuccess(data))
+      dispatch(getForecastsSuccess(data.list))
       return data
     } catch (e) {
       return dispatch(getForecastsError(e.response.data))
@@ -25,7 +24,7 @@ export const getForecasts = (query) => {
 }
 
 const initState = {
-  entires: {}
+  entries: []
 }
 
 export default (state = initState, action) => {
@@ -33,7 +32,8 @@ export default (state = initState, action) => {
     case actions.GET_FORECASTS_SUCCESS:
       return {
         ...state,
-        entires: transformById(action.forecasts)
+        // entries: transformById(action.forecasts)
+        entries: action.forecasts
       }
     default: 
       return state

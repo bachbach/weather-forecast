@@ -16,6 +16,7 @@ class APIInterceptor {
 
 
   get (url) {
+    console.log('get???', url)
     return this.api.get(url, this.mergeConfig())
   }
 

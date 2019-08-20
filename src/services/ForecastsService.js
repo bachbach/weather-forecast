@@ -7,6 +7,7 @@ export default class ForecastsService {
 
   getForecasts(query = 'id=524901') {
     // return this.api.get(`/forecast?${query}`)
+    console.log('Forecasts service')
     return this.api.get('/forecast?id=524901&appid=c7d9c985558627e1717792be2372eaa4')
   }
 }

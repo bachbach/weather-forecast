@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router as BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 import storeConfigurator from 'services/ReduxStoreConfigurator'
@@ -10,11 +10,11 @@ const store = storeConfigurator.configureStore()
 const history = createBrowserHistory()
 
 class Router extends Component {
-  
   render() {
+    console.log('router...', process.env.PUBLIC_URL)
     return (
       <Provider store={store}>
-        <BrowserRouter history={history}>
+        <BrowserRouter history={history} basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path='/' component={ForecastsConnector} />
           </Switch>

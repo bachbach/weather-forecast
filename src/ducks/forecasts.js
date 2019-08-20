@@ -12,8 +12,10 @@ const getForecastsSuccess = (forecasts) => ({ type: actions.GET_FORECASTS_SUCCES
 const getForecastsError = (error) => ({ type: actions.GET_FORECASTS_ERROR, error })
 
 export const getForecasts = (query) => {
+  console.log('action')
   return async dispatch => {
     try {
+      console.log('should dispatch...')
       const { data } = await forecastsService.getForecasts(query)
       dispatch(getForecastsSuccess(data.list))
       return data

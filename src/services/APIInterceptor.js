@@ -1,9 +1,10 @@
 import axios from 'axios'
-import mitt from 'mitt'
+// import mitt from 'mitt'
 import appRegistry from './AppRegistry'
 
 class APIInterceptor {
   constructor (baseURL = `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}`) {
+    console.log(process.env)
     this.baseURL = baseURL
 
     const settings = {
@@ -11,19 +12,8 @@ class APIInterceptor {
     }
 
     this.api = axios.create(settings)
-    this.api.interceptors.response.use(
-      successRes => successRes,
-      error => {
-        if (error.response && error.response.status === 401) {
-          APIInterceptor.events.emit('authorizationError', { err: error })
-        }
-
-        return Promise.reject(error)
-      }
-    )
   }
 
-  static events = mitt()
 
   get (url) {
     return this.api.get(url, this.mergeConfig())
@@ -40,7 +30,6 @@ class APIInterceptor {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
         ...config.headers
       }
     })

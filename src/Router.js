@@ -3,6 +3,7 @@ import { Router as BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 import storeConfigurator from 'services/ReduxStoreConfigurator'
+import ForecastsConnector from 'connectors/ForecastsConnector'
 
 const store = storeConfigurator.configureStore()
 
@@ -15,7 +16,7 @@ class Router extends Component {
       <Provider store={store}>
         <BrowserRouter history={history}>
           <Switch>
-            <Route exact path='/' render={() => <div>Hello!</div>} />
+            <Route exact path='/' component={ForecastsConnector} />
           </Switch>
         </BrowserRouter>
       </Provider>

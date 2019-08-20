@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import test from './test'
+import forecasts from './forecasts'
 
 const appReducer = combineReducers({
-  test
+  forecasts
 })
 
 const rootReducer = (state, action) => {
